@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "TicketService")
+@Table(name = "Ticket")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,4 +22,6 @@ public class Ticket {
      private Statut status;
      @ManyToOne
      private Admin apprenant;
+     @ManyToOne
+     private  Admin formateur;
 }

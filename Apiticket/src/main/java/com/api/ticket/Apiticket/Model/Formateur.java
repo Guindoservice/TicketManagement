@@ -6,6 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "formateur")
 @Data
+@DiscriminatorValue("ADMIN")
 public class Formateur extends Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

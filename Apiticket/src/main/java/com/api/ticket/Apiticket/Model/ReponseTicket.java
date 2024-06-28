@@ -1,16 +1,14 @@
 package com.api.ticket.Apiticket.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "reponseTicket")
-@Getter
-@Setter
-@NoArgsConstructor
-
+@Data
 public class ReponseTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

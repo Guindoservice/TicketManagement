@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Mail {
-    private String  object;
-    private String  message;
+//    private String  object;
+//    private String  message;
 }

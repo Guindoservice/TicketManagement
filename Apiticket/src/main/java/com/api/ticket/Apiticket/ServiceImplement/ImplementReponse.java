@@ -2,6 +2,7 @@ package com.api.ticket.Apiticket.ServiceImplement;
 
 import com.api.ticket.Apiticket.Model.ReponseTicket;
 import com.api.ticket.Apiticket.repository.ReponseRepository;
+import com.api.ticket.Apiticket.service.MailService;
 import com.api.ticket.Apiticket.service.ReponseService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,13 @@ public class ImplementReponse implements ReponseService {
 
     @Autowired
     private final ReponseRepository reponseRepository;
+    @Autowired
+    MailService mailService;
 
     @Override
     public ReponseTicket CreerReponse(ReponseTicket reponse) {
+        String messeage ="Votre ticket a été repondu par M. "+ reponse.getFormateur() ;
+        mailService.sendSimpleMail(reponse.getApprenant().getEmail(),messeage);
         return  reponseRepository.save(reponse);
     }
 

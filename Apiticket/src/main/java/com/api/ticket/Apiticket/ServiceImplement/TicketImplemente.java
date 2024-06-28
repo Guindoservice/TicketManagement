@@ -1,7 +1,9 @@
 package com.api.ticket.Apiticket.ServiceImplement;
 
+import com.api.ticket.Apiticket.Model.Formateur;
 import com.api.ticket.Apiticket.Model.Ticket;
 import com.api.ticket.Apiticket.repository.TIcketRepository;
+import com.api.ticket.Apiticket.service.MailService;
 import com.api.ticket.Apiticket.service.TicketService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,18 @@ public class TicketImplemente implements TicketService {
     @Autowired
     private final TIcketRepository ticketRepository;
 
+    @Autowired
+    MailService mailService;
+
+
+
     @Override
     public Ticket soumettre(Ticket ticket) {
-       return ticketRepository.save(ticket);
+
+        String  message = "Un nouveau ticket vous a été soumit par " + ticket.getApprenant();
+        mailService.sendSimpleMail(ticket.getFormateur().getEmail(),message);
+        return ticketRepository.save(ticket);
+
 
     }
 

@@ -4,9 +4,6 @@ package com.api.ticket.Apiticket.Model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 @MappedSuperclass
-
-
-
 public abstract class Utilisateur {
 
    @Id

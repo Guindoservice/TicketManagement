@@ -9,6 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "admin")
+
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Admin extends Utilisateur{

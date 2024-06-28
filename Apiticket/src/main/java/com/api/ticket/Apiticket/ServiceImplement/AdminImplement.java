@@ -3,6 +3,7 @@ package com.api.ticket.Apiticket.ServiceImplement;
 import com.api.ticket.Apiticket.Model.Admin;
 import com.api.ticket.Apiticket.repository.AdminRepository;
 import com.api.ticket.Apiticket.service.AdminService;
+import com.api.ticket.Apiticket.service.MailService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,8 @@ public class AdminImplement implements AdminService {
     private AdminRepository adminRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    MailService mailService;
 
     @Override
     public Admin creer(Admin admin) {
@@ -33,6 +36,14 @@ public class AdminImplement implements AdminService {
         if (option.isPresent()){
             throw new RuntimeException(" cet email exite déjà");
         }
+
+        // sauvegarder l'email
+        mailService.sendSimpleMail(
+                admin.getEmail(),
+                "Votre compte a été crée " + admin.getNom() +
+                " Votre mode mot de passe est " + admin.getPassword()
+
+                );
         return adminRepository.save(admin);
     }
 

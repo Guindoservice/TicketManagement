@@ -24,8 +24,8 @@ public class TicketImplemente implements TicketService {
     @Override
     public Ticket soumettre(Ticket ticket) {
 
-        String  message = "Un nouveau ticket vous a été soumit par " + ticket.getApprenant();
-        mailService.sendSimpleMail(ticket.getFormateur().getEmail(),message);
+//        String  message = "Un nouveau ticket vous a été soumit par " + ticket.getApprenant();
+//        mailService.sendSimpleMail(ticket.getFormateur().getEmail(),message);
         return ticketRepository.save(ticket);
 
     }
@@ -39,6 +39,7 @@ public class TicketImplemente implements TicketService {
     public Ticket modifier(Long id, Ticket ticket) {
         return ticketRepository.findById(id)
                 .map(t-> {
+                    t.setTitre(ticket.getTitre());
                     t.setDescription(ticket.getDescription());
                     t.setDate(ticket.getDate());
                     t.setStatus(ticket.getStatus());

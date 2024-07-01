@@ -1,7 +1,6 @@
 package com.api.ticket.Apiticket.controller;
 
 import com.api.ticket.Apiticket.Model.BaseConnaissance;
-import com.api.ticket.Apiticket.Model.ReponseTicket;
 import com.api.ticket.Apiticket.service.BaseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

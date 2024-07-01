@@ -20,9 +20,10 @@ public class ImplementReponse implements ReponseService {
 
     @Override
     public ReponseTicket CreerReponse(ReponseTicket reponse) {
-        String messeage ="Votre ticket a été repondu par M. "+ reponse.getFormateur() ;
-        mailService.sendSimpleMail(reponse.getApprenant().getEmail(),messeage);
+//        String messeage ="Votre ticket a été repondu par M. "+ reponse.getFormateur() ;
+//        mailService.sendSimpleMail(reponse.getApprenant().getEmail(),messeage);
         return  reponseRepository.save(reponse);
+
     }
 
     @Override

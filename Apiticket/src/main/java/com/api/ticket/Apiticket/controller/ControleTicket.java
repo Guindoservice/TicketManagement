@@ -30,12 +30,13 @@ public class ControleTicket {
     }
     @Operation(summary = "Pour Modifier un ticket")
     @PutMapping("/modifierTicket/{id}")
-    public Ticket modifier(@PathVariable Long id, @RequestBody Ticket ticket) {
-        return ticketService.modifier(id,ticket);
+   public Ticket modifierTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
+        return ticketService.modifier(id, ticket);
     }
     @Operation(summary = "Pour supprimer un ticket")
     @DeleteMapping("/suppTicket/{id}")
     public String supp(@PathVariable Long id) {
-        return ticketService.supprimer(id);
+         ticketService.supprimer(id);
+         return "Le ticket a été supprimer !";
     }
 }

@@ -21,15 +21,12 @@ public class TicketImplemente implements TicketService {
     @Autowired
     MailService mailService;
 
-
-
     @Override
     public Ticket soumettre(Ticket ticket) {
 
         String  message = "Un nouveau ticket vous a été soumit par " + ticket.getApprenant();
         mailService.sendSimpleMail(ticket.getFormateur().getEmail(),message);
         return ticketRepository.save(ticket);
-
 
     }
 
@@ -45,7 +42,6 @@ public class TicketImplemente implements TicketService {
                     t.setDescription(ticket.getDescription());
                     t.setDate(ticket.getDate());
                     t.setStatus(ticket.getStatus());
-                    t.setApprenant(ticket.getApprenant());
                     return ticketRepository.save(t);
                 }).orElseThrow(() -> new RuntimeException(" votre ticket n'est pas disponbile"));
 

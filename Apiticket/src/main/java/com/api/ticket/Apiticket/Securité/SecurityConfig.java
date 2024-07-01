@@ -27,11 +27,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registre -> {
-                    registre.requestMatchers("/admin/**").permitAll();
+                    registre.requestMatchers("/admin/**").hasRole("ADMIN");
+                    registre.requestMatchers("/addApprenant/**").hasRole("ADMIN");
+                    registre.requestMatchers("/addFormateur/**").hasRole("ADMIN");
                     registre.requestMatchers("/base/").permitAll();
                     registre.requestMatchers("/categorie/").permitAll();
                     registre.requestMatchers("/ticket/").permitAll();
-                    registre.requestMatchers("/formateur/**").hasRole("FORMATEUR");
+                    registre.requestMatchers("/reponseticket/**").hasRole("FORMATEUR");
                     registre.requestMatchers("/apprenant/**").hasRole("APPRENANT");
                     registre.anyRequest().authenticated();
                 })

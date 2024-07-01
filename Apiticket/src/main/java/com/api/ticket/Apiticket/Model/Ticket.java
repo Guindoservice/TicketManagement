@@ -21,7 +21,9 @@ public class Ticket {
      @Enumerated
      private Statut status;
      @ManyToOne
-     private Admin apprenant;
+     @JoinColumn(name = "apprenant_id")
+     private Apprenant apprenant;
      @ManyToOne
-     private  Admin formateur;
+     @JoinColumn(name = "formateur_id")
+     private  Formateur formateur;
 }

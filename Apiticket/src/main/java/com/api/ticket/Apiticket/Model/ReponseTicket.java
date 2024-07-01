@@ -22,8 +22,8 @@ public class ReponseTicket {
    @Enumerated
    private Cate categorie;
    @ManyToOne
-   private Admin formateur;
+   private Formateur formateur;
    @ManyToOne
-   private Admin apprenant;
+   private Apprenant apprenant;
 
 }

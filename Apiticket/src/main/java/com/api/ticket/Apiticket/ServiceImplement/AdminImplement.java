@@ -25,7 +25,7 @@ public class AdminImplement implements AdminService {
     @Override
     public Admin creer(Admin admin) {
 
-        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+
         if (!admin.getEmail().contains("@")){
             throw new RuntimeException(" votre email maque (@)");
         }
@@ -44,6 +44,7 @@ public class AdminImplement implements AdminService {
                 " Votre mode mot de passe est " + admin.getPassword()
 
                 );
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         return adminRepository.save(admin);
     }
 
@@ -60,6 +61,14 @@ public class AdminImplement implements AdminService {
                     p.setEmail(admin.getEmail());
                     p.setPassword(passwordEncoder.encode(admin.getPassword()));
                     p.setRole(admin.getRole());
+
+                    // pour modifier le compte
+                    mailService.sendSimpleMail(
+                            admin.getEmail(),
+                            "Votre compte a été Modifier " + admin.getNom() +
+                                    " Votre mode mot de passe est " + admin.getPassword()
+
+                    );
                     return adminRepository.save(p);
                 }).orElseThrow(() -> new RuntimeException("Pas d'admin"));
     }
